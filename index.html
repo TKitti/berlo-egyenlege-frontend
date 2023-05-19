@@ -6,18 +6,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bérlő egyenlege</title>
 </head>
-<body>
+<body onload="initializeOnWindowsLoad()">
   <p>egyenleg</p>
-  <button onclick="getBalance()">lássuk az egyenleget</button>
   <p id="balance">0 Ft</p>
 
-  <a href="add-cost">tartozás hozzáadása</a>
-  <a href="costs">tartozások megtekintése</a>
-  <a href="add-payment">fizetés hozzáadása</a>
-  <a href="payments">fizetések megtekintése</a>
+  <a href="#add-cost">tartozás hozzáadása</a>
+  <a href="#costs">tartozások megtekintése</a>
+  <a href="#add-payment">fizetés hozzáadása</a>
+  <a href="#payments">fizetések megtekintése</a>
 
 
-  <div id="add-cost"></div>
+  <div id="add-cost">
+    <form action="/cost" id="add-cost-form" method="post" onsubmit="addCostFormSubmit(event,this)">
+      <label for="month-selection">Melyik hónapra vonatkozik?</label>
+      <p>2023.</p>
+      <select name="month" id="month-selection" required></select>
+
+      <label for="amount">Összeg:</label>
+      <input type="number" id="amount" placeholder="összeg forintban" required>
+
+      <button type="submit">hozzáadás</button>
+    </form>
+  </div>
+
+
   <div id="costs"></div>
   <div id="add-payment"></div>
   <div id="payments"></div>
