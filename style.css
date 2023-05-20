@@ -1,0 +1,30 @@
+body {
+  background-color: #9F8772;
+}
+
+.balance-container {
+  background-color: #EDE4E0;
+}
+
+.balance-container-middle {
+  background-color: #C8DBBE;
+}
+
+.balance-title {
+  font-size: 2rem;
+}
+
+#balance {
+  font-size: 1.5rem;
+}
+
+.menu-item {
+  background-color: #EDE4E0;
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,0.7);
+  width: 100%;
+  height: 100%;
+}
+
+.menu-item:hover {
+  background-color: #C8DBBE;
+}
