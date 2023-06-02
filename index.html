@@ -9,34 +9,51 @@
   <title>Bérlő egyenlege</title>
 </head>
 <body onload="initializeOnWindowsLoad()">
-  <div class="row pb-3 balance-container">
-  <div class="col-sm-12 col-md-8 col-lg-5 p-2 rounded-bottom shadow container-sm balance-container-middle">
-    <p class="text-center balance-title">Egyenleg:</p>
-    <p class="text-center fw-bolder" id="balance">0 Ft</p>
-  </div>
-</div>
-    
+  
   <div class="container">
-    <div class="m-2 row menu-container">
-      <div class="my-2 col-sm-12 col-md-6 col-lg-3"><a href="#add-cost" class="btn btn-lg d-flex align-items-center justify-content-center menu-item">új rezsi, lakbér rögzítése</a></div>
-      <div class="my-2 col-sm-12 col-md-6 col-lg-3"><a href="#costs" class="btn btn-lg d-flex align-items-center justify-content-center menu-item">rezsik megtekintése</a></div>
-      <div class="my-2 col-sm-12 col-md-6 col-lg-3"><a href="#add-payment" class="btn btn-lg d-flex align-items-center justify-content-center menu-item">fizetés hozzáadása</a></div>
-      <div class="my-2 col-sm-12 col-md-6 col-lg-3"><a href="#payments" class="btn btn-lg d-flex align-items-center justify-content-center menu-item">fizetések megtekintése</a></div>
+    <div class="pb-3 d-flex justify-content-center">
+      <div class="p-2 rounded-bottom shadow balance-container-middle">
+        <p class="text-center balance-title">Egyenleg:</p>
+        <p class="text-center fw-bolder" id="balance">0 Ft</p>
+      </div>
+    </div>
+  </div>
+  
+    
+  <div class="p-3 menu-container-wrapper ">
+    <div class="container">
+      <div class="m-2 row">
+        <div class="my-2 col-sm-12 col-md-6 col-lg-3"><a href="#add-cost" class="btn btn-lg d-flex align-items-center justify-content-center menu-item">új rezsi, lakbér rögzítése</a></div>
+        <div class="my-2 col-sm-12 col-md-6 col-lg-3"><a href="#costs" class="btn btn-lg d-flex align-items-center justify-content-center menu-item">rezsik megtekintése</a></div>
+        <div class="my-2 col-sm-12 col-md-6 col-lg-3"><a href="#add-payment" class="btn btn-lg d-flex align-items-center justify-content-center menu-item">fizetés hozzáadása</a></div>
+        <div class="my-2 col-sm-12 col-md-6 col-lg-3"><a href="#payments" class="btn btn-lg d-flex align-items-center justify-content-center menu-item">fizetések megtekintése</a></div>
+      </div>
     </div>
   </div>
     
 
-  <section id="add-cost" class="mx-5 container justify-content-center">
-    <form action="/cost" id="add-cost-form" method="post" onsubmit="addCostFormSubmit(event,this)">
-      <label for="month-selection">Mennyit kell fizetnie az alábbi hónapban?</label>
-      <p>2023.</p>
-      <select name="month" id="month-selection" required></select>
+  <section id="add-cost" class="container d-flex justify-content-center">
+    <div class="col-md-6 p-5 my-5 shadow rounded add-cost-container">
+      <form action="/cost" id="add-cost-form" method="post" onsubmit="addCostFormSubmit(event,this)">
+        <label for="month-selection" class="form-label">Mennyit kell fizetnie az alábbi hónapban?</label>
+        <div class="mb-3 d-flex justify-content-between">
+          <select name="year" id="year" class="me-2 form-select">
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+          </select>
+          <select name="month" id="month-selection" class="form-select" required></select>
+        </div>
 
-      <label for="amount">Összeg:</label>
-      <input type="number" id="amount" placeholder="összeg forintban" required>
+        <label for="amount" class="form-label">Összeg:</label>
+        <div class="mb-2 input-group">
+          <input type="number" id="amount" class="form-control" required>
+          <span class="input-group-text">,-Ft</span>
+        </div>
 
-      <button type="submit">hozzáadás</button>
-    </form>
+        <button type="submit" class="btn submit-button justify-content-center">hozzáadás</button>
+      </form>
+    </div>
   </section>
 
 
