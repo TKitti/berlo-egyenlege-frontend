@@ -1,10 +1,10 @@
 function initializeOnWindowsLoad() {
   getBalance();
   setMonths();
+  getCosts();
 }
 
 const baseUrl = "https://berlo-egyenlege-backend.vercel.app";
-const url = "https://berlo-egyenlege-backend.vercel.app/balance";
 const requestParams = {
   headers: {
     "Content-Type": "application/json"
@@ -12,16 +12,59 @@ const requestParams = {
 }
 
 async function getBalance() {
-  await fetch(url, requestParams)
+  await fetch(`${baseUrl}/balance`, requestParams)
     .then(async response => {      
       const jsonData = await response.json();
-      console.log(jsonData);
       document.getElementById("balance").textContent = jsonData[0].balance + ",- Ft";
     })
     .catch(error => {
-      console.log("Something went wrong!");
+      console.log("can't get the balance");
       console.log(error);
     });
+}
+
+async function getCosts() {
+  let table = document.getElementById("cost-table");
+  
+  await fetch(`${baseUrl}/costs`, requestParams)
+  .then(async response => {
+    const jsonData = await response.json();
+    
+    if (jsonData) {
+      jsonData.forEach(cost => {
+        const date = convertDate(cost.date);
+        const amount = formatAmount(cost.amount);
+        createTableRow(jsonData.length, table, [date, amount]);
+      });
+    } else {
+      createTableRow(1, table, ["Nincs mit kifizetni."]);
+    }
+  })
+  .catch(error => {
+    console.log("can't get costs", error);
+  });
+}
+
+function createTableRow(numberOfColumns, table, data) {
+  const tableRow = document.createElement("tr");
+
+  for (let i = 0; i < numberOfColumns; i++) {
+    let tableCell = document.createElement("td");
+    tableCell.textContent = data[i];
+    tableRow.appendChild(tableCell);
+  }
+
+  table.appendChild(tableRow);
+}
+
+function convertDate(date) {
+  let newDate = new Date(date);
+  let month = newDate.toLocaleString("hu", { month: "long" });
+  return newDate.getFullYear() + ". " + month;
+}
+
+function formatAmount(amount) {
+  return new Intl.NumberFormat("de-DE").format(amount) + ",-";
 }
   
   

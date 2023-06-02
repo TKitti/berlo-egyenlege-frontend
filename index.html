@@ -33,7 +33,7 @@
     
 
   <section id="add-cost" class="container d-flex justify-content-center">
-    <div class="col-md-6 p-5 my-5 shadow rounded add-cost-container">
+    <div class="col-md-8 col-lg-6 p-5 my-5 shadow rounded add-cost-container">
       <form action="/cost" id="add-cost-form" method="post" onsubmit="addCostFormSubmit(event,this)">
         <label for="month-selection" class="form-label">Mennyit kell fizetnie az alábbi hónapban?</label>
         <div class="mb-3 d-flex justify-content-between">
@@ -57,7 +57,24 @@
   </section>
 
 
-  <section id="costs"></section>
+  <section id="costs" class="container d-flex justify-content-center">
+    <div class="col-md-8 p-5 my-5 shadow rounded costs-container">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Időszak</th>
+            <th scope="col">Összeg</th>
+          </tr>
+        </thead>
+
+        <tbody id="cost-table"></tbody>
+      </table>
+    </div>
+  </section>
+
+
+
+
   <section id="add-payment"></section>
   <section id="payments"></section>
 
