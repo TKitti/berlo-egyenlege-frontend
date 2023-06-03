@@ -94,7 +94,10 @@ function setMonths() {
 }
 
 
+let modalTrigger = "";
+
 function addCostFormSubmit() {
+  modalTrigger = "cost";
   let passwordModal = new bootstrap.Modal(document.getElementById('givePasswordModal'));
   const amount = document.getElementById("amount").value;
   let errorMsg = document.getElementById("amount-error-msg");
@@ -111,14 +114,22 @@ function submitPassword() {
   const passwordElements = document.getElementsByClassName("passwordField");
   if (passwordElements && passwordElements.length == 1) {
     const password = passwordElements[0].value;
+    let errorMsg = document.getElementById("pw-error-msg");
 
-    if( modalTrigger == "cost") {
-      console.log("a create cost fog meghívódni");
-      createCost(password);
-    } else if (modalTrigger == "payment") {
-      console.log("a create payment fog meghívódni");
-      // TODO: add createPayment
+    if (password) {
+      errorMsg.style.display = "none";
+
+      if( modalTrigger == "cost") {
+        console.log("a create cost fog meghívódni");
+        createCost(password);
+      } else if (modalTrigger == "payment") {
+        console.log("a create payment fog meghívódni");
+        // TODO: add createPayment
+      }
+    } else {
+      errorMsg.style.display = "block";
     }
+
     
   }
  
@@ -171,21 +182,3 @@ async function createCost(password) {
   }
 
 }
-
-/*
-let modalTrigger = "";
-// get the triggering button of the modal
-let modalElement = document.getElementById("givePasswordModal");
-console.log(modalElement);
-if (modalElement) {
-  modalElement.addEventListener('show.bs.modal', (event) => {
-    const triggeringButton = event.relatedTarget;
-    const classAttributes = triggeringButton.getAttribute("class");
-    if (classAttributes.includes("cost")) {
-      modalTrigger = "cost";
-    } else if (classAttributes.includes("payment")) {
-      modalTrigger = "payment";
-    }
-  });
-}
-*/
