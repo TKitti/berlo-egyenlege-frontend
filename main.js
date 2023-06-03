@@ -15,13 +15,25 @@ async function getBalance() {
   await fetch(`${baseUrl}/balance`, requestParamsGetMethod)
     .then(async response => {      
       const jsonData = await response.json();
-      document.getElementById("balance").textContent = jsonData[0].balance + ",- Ft";
+      updateBalance(jsonData);
     })
     .catch(error => {
       console.log("can't get the balance");
       console.log(error);
     });
-}
+  }
+  
+  function updateBalance(data) {
+    let balanceElement = document.getElementById("balance");
+    balanceElement.textContent = data[0].balance + ",- Ft";
+
+    if (data[0].balance < 0) {
+      balanceElement.style.color = "red";
+    } else {
+      balanceElement.style.color = "forestgreen";
+    }
+
+  }
 
 async function getCosts() {
   let table = document.getElementById("cost-table");
