@@ -35,7 +35,7 @@
 
   <section id="add-cost" class="container d-flex justify-content-center">
     <div class="col-md-8 col-lg-6 p-5 my-5 shadow rounded add-cost-container">
-      <form action="/cost" id="add-cost-form" method="post" onsubmit="addCostFormSubmit(event,this)">
+      <form id="add-cost-form">
         <label for="month-selection" class="form-label">Mennyit kell fizetnie az alábbi hónapban?</label>
         <div class="mb-3 d-flex justify-content-between">
           <select name="year" id="year-selection" class="me-2 form-select">
@@ -47,13 +47,15 @@
         </div>
 
         <label for="amount" class="form-label">Összeg:</label>
+        <p id="amount-error-msg">Töltsd ki ezt a mezőt!</p>
         <div class="mb-2 input-group">
           <input type="number" id="amount" class="form-control" required>
           <span class="input-group-text">,-Ft</span>
         </div>
 
-        <!-- Button trigger modal -->
-        <button type="button" class="btn add-cost-submit-button justify-content-center" data-bs-toggle="modal" data-bs-target="#givePasswordModal">hozzáadás</button>
+        <!-- Button trigger modal 
+        data-bs-toggle="modal"-->
+        <button type="button" class="btn add-cost-submit-button justify-content-center"  data-bs-target="#givePasswordModal" onclick="addCostFormSubmit()">hozzáadás</button>
       </form>
     </div>
   </section>

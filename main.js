@@ -94,8 +94,17 @@ function setMonths() {
 }
 
 
-function addCostFormSubmit(event) {
-  event.preventDefault();
+function addCostFormSubmit() {
+  let passwordModal = new bootstrap.Modal(document.getElementById('givePasswordModal'));
+  const amount = document.getElementById("amount").value;
+  let errorMsg = document.getElementById("amount-error-msg");
+
+  if (amount) {
+    passwordModal.show();
+    errorMsg.style.display = "none";
+  } else {
+    errorMsg.style.display = "block";
+  }
 }
 
 function submitPassword() {
@@ -163,12 +172,13 @@ async function createCost(password) {
 
 }
 
-
+/*
 let modalTrigger = "";
 // get the triggering button of the modal
-let modalElement = document.getElementsByClassName("modal");
+let modalElement = document.getElementById("givePasswordModal");
+console.log(modalElement);
 if (modalElement) {
-  modalElement[0].addEventListener('show.bs.modal', (event) => {
+  modalElement.addEventListener('show.bs.modal', (event) => {
     const triggeringButton = event.relatedTarget;
     const classAttributes = triggeringButton.getAttribute("class");
     if (classAttributes.includes("cost")) {
@@ -178,3 +188,4 @@ if (modalElement) {
     }
   });
 }
+*/

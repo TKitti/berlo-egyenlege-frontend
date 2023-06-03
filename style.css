@@ -56,3 +56,10 @@ body {
 .send-password-button:hover {
   background-color: #EDE4E0;
 }
+
+#amount-error-msg {
+  color: darkorange;
+  display: none;
+  font-size: 0.8rem;
+  margin: 0;
+}
