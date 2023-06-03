@@ -110,9 +110,9 @@ function addCostFormSubmit() {
 }
 
 function submitPassword() {
-  const passwordElements = document.getElementsByClassName("passwordField");
-  if (passwordElements && passwordElements.length == 1) {
-    const password = passwordElements[0].value;
+  const passwordElement = document.getElementById("passwordField");
+  if (passwordElement) {
+    const password = passwordElement.value;
     let errorMsg = document.getElementById("pw-error-msg");
 
     if (password) {
@@ -181,3 +181,13 @@ async function createCost(password) {
   }
 
 }
+
+// show-hide password
+const togglePassword = document.getElementById("togglePassword");
+const passwordElement = document.getElementById("passwordField");
+
+togglePassword.addEventListener('click', () => {
+  const type = passwordElement.getAttribute('type') === 'password' ? 'text' : 'password';
+  passwordElement.setAttribute('type', type);
+  togglePassword.classList.toggle('bi-eye');
+});
