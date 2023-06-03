@@ -39,12 +39,20 @@ body {
 }
 
 
-.submit-button {
+.add-cost-submit-button {
   background-color: #EDE4E0;
   box-shadow: 0 .5rem 1rem rgba(0,0,0,0.7);
 
 }
 
-.submit-button:hover {
+.add-cost-submit-button:hover {
   background-color: #C8DBBE;
+}
+
+.send-password-button {
+  background-color: #C8DBBE;
+}
+
+.send-password-button:hover {
+  background-color: #EDE4E0;
 }
