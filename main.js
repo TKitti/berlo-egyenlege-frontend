@@ -70,25 +70,12 @@ function formatAmount(amount) {
   
 function setMonths() {
   let dropDownMenu = document.getElementById("month-selection");
-  const months = {
-    "01": "január",
-    "02": "február",
-    "03": "március",
-    "04": "április",
-    "05": "május",
-    "06": "június",
-    "07": "július",
-    "08": "augusztus",
-    "09": "szeptember",
-    "10": "október",
-    "11": "november",
-    "12": "december"
-  }
+  const months = ["január","február","március","április","május","június","július","augusztus","szeptember","október","november","december"];
 
-  for (const month in months) {
+  for (let i = 0; i < months.length; i++) {
     const option = document.createElement("option");
-    option.value = month;
-    option.textContent = months[month];
+    option.value = i+1<10 ? "0"+(i+1) : i+1;
+    option.textContent = months[i];
     dropDownMenu.appendChild(option);
   }
 }
