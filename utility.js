@@ -1,11 +1,14 @@
-export function updateBalance(data) {
+export function updateBalance(balance) {
   let balanceElement = document.getElementById("balance");
-  balanceElement.textContent = data[0].balance + ",- Ft";
 
-  if (data[0].balance < 0) {
-    balanceElement.style.color = "red";
-  } else {
-    balanceElement.style.color = "forestgreen";
+  if(balance && !isNaN(balance)) {
+    balanceElement.textContent = formatAmount(Number(balance)) + " Ft";
+    
+    if (balance < 0) {
+      balanceElement.style.color = "red";
+    } else {
+      balanceElement.style.color = "forestgreen";
+    }
   }
 }
 

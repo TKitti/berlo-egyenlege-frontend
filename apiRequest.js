@@ -12,11 +12,10 @@ export async function getBalance() {
   await fetch(`${baseUrl}/balance`, requestParamsGetMethod)
     .then(async response => {      
       const jsonData = await response.json();
-      updateBalance(jsonData);
+      if (jsonData && jsonData.length > 0) updateBalance(jsonData[0].balance);
     })
     .catch(error => {
-      console.log("can't get the balance");
-      console.log(error);
+      console.log("can't get the balance: " + error);
   });
 }
 
