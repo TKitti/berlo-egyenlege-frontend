@@ -30,6 +30,20 @@ body {
   background-color: #C8DBBE;
 }
 
+
+.navbar {
+  background-color: #9F8772;
+}
+
+.nav-link {
+  background-color: #EDE4E0;
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,0.4);
+}
+
+.active {
+  background-color: #C8DBBE!important;
+}
+
 .add-cost-container {
   background-color: #9F8772;
 }
