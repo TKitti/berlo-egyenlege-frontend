@@ -31,7 +31,7 @@ export async function getCosts() {
       jsonData.forEach(cost => {
         const date = convertDate(cost.date);
         const amount = formatAmount(cost.amount);
-        createTableRow(jsonData.length, table, [date, amount]);
+        createTableRow(2, table, [date, amount]);
       });
     } else {
       createTableRow(1, table, ["Nincs mit kifizetni."]);
