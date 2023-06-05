@@ -57,7 +57,7 @@ body {
   background-color: #EDE4E0;
 }
 
-#amount-error-msg, #pw-error-msg {
+#cost-amount-error-msg, #pw-error-msg {
   color: darkorange;
   display: none;
   font-size: 0.8rem;

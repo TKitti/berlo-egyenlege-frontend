@@ -1,5 +1,5 @@
 import { getBalance, getCosts, createCost  } from "./apiRequest.js";
-import { setMonths } from "./utility.js";
+import { setMonths, showHideErrorMessage } from "./utility.js";
 
 
 window.onload = () => {
@@ -11,32 +11,32 @@ window.onload = () => {
 
 
 let modalTrigger = "";
+const costAmountInputField = document.getElementById("cost-amount");
+const costAmountErrorMsgElement = document.getElementById("cost-amount-error-msg");
+const togglePasswordIcon = document.getElementById("togglePassword");
+const passwordElement = document.getElementById("password");
+const passwordErrorMsgElement = document.getElementById("pw-error-msg");
+
 
 // we need the attach the function to the window to be able to use it globally
 // the modularization (the multiple js files) messes up the click events
 window.addCostFormSubmit = () => {
   modalTrigger = "cost";
   let passwordModal = new bootstrap.Modal(document.getElementById('givePasswordModal'));
-  const amount = document.getElementById("amount").value;
-  let errorMsg = document.getElementById("amount-error-msg");
+  const amount = costAmountInputField.value;
 
   if (amount) {
     passwordModal.show();
-    errorMsg.style.display = "none";
   } else {
-    errorMsg.style.display = "block";
+    costAmountErrorMsgElement.style.display = "block";
   }
 }
 
 window.submitPassword = () => {
-  const passwordElement = document.getElementById("passwordField");
   if (passwordElement) {
     const password = passwordElement.value;
-    let errorMsg = document.getElementById("pw-error-msg");
-
+    
     if (password) {
-      errorMsg.style.display = "none";
-
       if( modalTrigger == "cost") {
         console.log("a create cost fog meghívódni");
         createCost(password);
@@ -45,18 +45,30 @@ window.submitPassword = () => {
         // TODO: add createPayment
       }
     } else {
-      errorMsg.style.display = "block";
+      passwordErrorMsgElement.style.display = "block";
     }
   }
 }
 
 
 
-// show-hide password
-const togglePassword = document.getElementById("togglePassword");
-const passwordElement = document.getElementById("passwordField");
 
-togglePassword.addEventListener('click', () => {
+// ******************************* EVENT LISTENERS *******************************
+
+costAmountInputField.addEventListener('keyup', function() {
+    showHideErrorMessage(this, costAmountErrorMsgElement);  
+  }, 
+  false
+);
+
+passwordElement.addEventListener('keyup', function() {
+    showHideErrorMessage(this, passwordErrorMsgElement);  
+  }, 
+  false
+);
+
+// show-hide password
+togglePasswordIcon.addEventListener('click', () => {
   const type = passwordElement.getAttribute('type') === 'password' ? 'text' : 'password';
   passwordElement.setAttribute('type', type);
   togglePassword.classList.toggle('bi-eye');

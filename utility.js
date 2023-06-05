@@ -45,3 +45,8 @@ export function setMonths() {
     dropDownMenu.appendChild(option);
   }
 }
+
+export function showHideErrorMessage(field, errorMsg) {
+  if (field.value == "") errorMsg.style.display = "block";
+  else errorMsg.style.display = "none";
+}

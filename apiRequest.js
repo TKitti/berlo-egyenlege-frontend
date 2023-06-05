@@ -47,7 +47,7 @@ export async function getCosts() {
 export async function createCost(password) {
   const year = document.getElementById("year-selection").value;
   const month = document.getElementById("month-selection").value;
-  const amount = document.getElementById("amount").value;
+  const amount = document.getElementById("cost-amount").value;
   
 
   if (password && year && month && amount) {
