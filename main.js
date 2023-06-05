@@ -16,17 +16,18 @@ const costAmountErrorMsgElement = document.getElementById("cost-amount-error-msg
 const togglePasswordIcon = document.getElementById("togglePassword");
 const passwordElement = document.getElementById("password");
 const passwordErrorMsgElement = document.getElementById("pw-error-msg");
+const passwordModal = document.getElementById('givePasswordModal');
 
 
 // we need the attach the function to the window to be able to use it globally
 // the modularization (the multiple js files) messes up the click events
 window.addCostFormSubmit = () => {
   modalTrigger = "cost";
-  let passwordModal = new bootstrap.Modal(document.getElementById('givePasswordModal'));
+  let modal = new bootstrap.Modal(document.getElementById('givePasswordModal'));
   const amount = costAmountInputField.value;
 
   if (amount) {
-    passwordModal.show();
+    modal.show();
   } else {
     costAmountErrorMsgElement.style.display = "block";
   }
@@ -72,4 +73,9 @@ togglePasswordIcon.addEventListener('click', () => {
   const type = passwordElement.getAttribute('type') === 'password' ? 'text' : 'password';
   passwordElement.setAttribute('type', type);
   togglePassword.classList.toggle('bi-eye');
+});
+
+passwordModal.addEventListener('hidden.bs.modal', function () {
+  passwordElement.value = "";
+  passwordErrorMsgElement.style.display = "none";
 });
