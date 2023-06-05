@@ -1,7 +1,6 @@
-import { api } from './../config.js';
 import { updateBalance, createTableRow, convertDate, formatAmount } from './utility.js'
 
-
+const baseUrl = "https://berlo-egyenlege-backend.vercel.app";
 const requestParamsGetMethod = {
   headers: {
     "Content-Type": "application/json"
@@ -9,7 +8,7 @@ const requestParamsGetMethod = {
 }
 
 export async function getBalance() {
-  await fetch(`${api}/balance`, requestParamsGetMethod)
+  await fetch(`${baseUrl}/balance`, requestParamsGetMethod)
     .then(async response => {      
       const jsonData = await response.json();
       if (jsonData && jsonData.length > 0) updateBalance(jsonData[0].balance);
@@ -23,7 +22,7 @@ export async function getBalance() {
 export async function getCosts() {
   let table = document.getElementById("cost-table");
   
-  await fetch(`${api}/costs`, requestParamsGetMethod)
+  await fetch(`${baseUrl}/costs`, requestParamsGetMethod)
   .then(async response => {
     const jsonData = await response.json();
     
@@ -76,7 +75,7 @@ export async function createCost(password) {
 
     console.log(data);
 
-    await fetch(`${api}/cost`, requestParams)
+    await fetch(`${baseUrl}/cost`, requestParams)
     .then(async response => {
       const jsonData = await response.json();
   
