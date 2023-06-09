@@ -50,3 +50,13 @@ export function showHideErrorMessage(field, errorMsg) {
   if (field.value == "") errorMsg.style.display = "block";
   else errorMsg.style.display = "none";
 }
+
+export function handleModals(isCreationSuccessful, confirmationMsg) {
+  let passwordModal = bootstrap.Modal.getInstance(document.getElementById('givePasswordModal'));
+  passwordModal.hide();
+  let confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+  confirmationModal.show();
+  const confirmationMsgElement = document.getElementById("confirmation-msg");
+  confirmationMsgElement.textContent = confirmationMsg;
+  if (!isCreationSuccessful) confirmationMsgElement.style.color = "red";
+}

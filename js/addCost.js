@@ -34,11 +34,9 @@ window.submitPassword = () => {
     const password = passwordElement.value;
     
     if (password) {
-      if( modalTrigger == "cost") {
-        console.log("a create cost fog meghívódni");
+      if (modalTrigger == "cost") {
         createCost(password);
       } else if (modalTrigger == "payment") {
-        console.log("a create payment fog meghívódni");
         // TODO: add createPayment
       }
     } else {

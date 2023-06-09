@@ -1,4 +1,4 @@
-import { updateBalance, createTableRow, convertDate, formatAmount } from './utility.js'
+import { updateBalance, createTableRow, convertDate, formatAmount, handleModals } from './utility.js'
 
 const baseUrl = "https://berlo-egyenlege-backend.vercel.app";
 const requestParamsGetMethod = {
@@ -68,16 +68,15 @@ export async function createCost(password) {
 
     await fetch(`${baseUrl}/cost`, requestParams)
     .then(async response => {
-      const status = await response.status;
-      
-      // TODO: confirmation message for user
-      //if (status) 
+      if (response?.ok) {
+        handleModals(true, "Sikeres rögzítés!");
+      }
+      if (response.status == 403) {
+        handleModals(false, "Hibás jelszó!");
+      }
     })
-    .catch(error => {
-      console.log("can't create cost", error);
+    .catch(() => {
+      handleModals(false, "Jaj.. valami gikszer volt. Nem sikerült rögzíteni!");
     }); 
-  } else {
-    console.log("password or amount or date is missing");
-    // TODO: error message for user
   }
 }
