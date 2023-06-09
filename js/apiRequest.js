@@ -48,38 +48,30 @@ export async function createCost(password) {
   const month = document.getElementById("month-selection").value;
   const amount = document.getElementById("cost-amount").value;
   
-
   if (password && year && month && amount) {
-    /*
-    const data = {
+    let payload = JSON.stringify({
       "password": password,
       "cost": {
         "date": year + "-" + month,
         "amount": amount
       }
-    }
-    */
-    const data = {
-      "date": year + "-" + month,
-      "amount": amount
-    }
+    });
 
     const requestParams = {
       method: "POST", 
       headers: {
         "Content-Type": "application/json",
-        "Authorization": "Basic " + btoa("password:" + password)
+        //"Authorization": "Basic " + btoa("password:" + password)
       }, 
-      body: JSON.stringify(data)
+      body: payload
     }
-
-    console.log(data);
 
     await fetch(`${baseUrl}/cost`, requestParams)
     .then(async response => {
-      const jsonData = await response.json();
-  
-      if (jsonData) {}
+      const status = await response.status;
+      
+      // TODO: confirmation message for user
+      //if (status) 
     })
     .catch(error => {
       console.log("can't create cost", error);
@@ -88,5 +80,4 @@ export async function createCost(password) {
     console.log("password or amount or date is missing");
     // TODO: error message for user
   }
-
 }
