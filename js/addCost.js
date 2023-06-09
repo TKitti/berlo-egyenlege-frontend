@@ -56,20 +56,34 @@ costAmountInputField.addEventListener('keyup', function() {
 false
 );
 
+costAmountInputField.addEventListener('keypress', function(event) {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    addCostFormSubmit();
+  }
+});
+
 passwordElement.addEventListener('keyup', function() {
   showHideErrorMessage(this, passwordErrorMsgElement);  
 }, 
 false
 );
 
+passwordElement.addEventListener('keypress', function(event) {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    submitPassword();
+  }
+});
+
 // show-hide password
 togglePasswordIcon.addEventListener('click', () => {
-const type = passwordElement.getAttribute('type') === 'password' ? 'text' : 'password';
-passwordElement.setAttribute('type', type);
-togglePassword.classList.toggle('bi-eye');
+  const type = passwordElement.getAttribute('type') === 'password' ? 'text' : 'password';
+  passwordElement.setAttribute('type', type);
+  togglePassword.classList.toggle('bi-eye');
 });
 
 passwordModal.addEventListener('hidden.bs.modal', function () {
-passwordElement.value = "";
-passwordErrorMsgElement.style.display = "none";
+  passwordElement.value = "";
+  passwordErrorMsgElement.style.display = "none";
 });
