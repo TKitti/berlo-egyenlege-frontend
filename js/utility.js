@@ -26,8 +26,17 @@ export function createTableRow(numberOfColumns, table, data) {
 
 export function convertDate(date) {
   let newDate = new Date(date);
-  let month = newDate.toLocaleString("hu", { month: "long" });
+  let month = newDate.toLocaleDateString("hu", { month: "long" });
   return newDate.getFullYear() + ". " + month;
+}
+
+export function isValidDate(dateString) {
+  var regEx = /^\d{4}-\d{2}$/;
+  return dateString.match(regEx) != null;
+}
+
+export function convertStringToTimestamp(dateString) {
+  return Date.parse(dateString);
 }
 
 export function formatAmount(amount) {

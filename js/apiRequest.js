@@ -1,4 +1,13 @@
-import { updateBalance, createTableRow, convertDate, formatAmount, handleModals } from './utility.js'
+import { 
+  updateBalance, 
+  createTableRow, 
+  convertDate, 
+  isValidDate,
+  convertStringToTimestamp, 
+  formatAmount, 
+  handleModals, 
+} from './utility.js'
+
 
 const baseUrl = "https://berlo-egyenlege-backend.vercel.app";
 const requestParamsGetMethod = {
@@ -47,12 +56,13 @@ export async function createCost(password) {
   const year = document.getElementById("year-selection").value;
   const month = document.getElementById("month-selection").value;
   const amount = document.getElementById("cost-amount").value;
+  const date = isValidDate(year + "-" + month) ? convertStringToTimestamp(year + "-" + month) : handleModals(false, "Érvénytelen dátum!");
   
   if (password && year && month && amount) {
     let payload = JSON.stringify({
       "password": password,
       "cost": {
-        "date": year + "-" + month,
+        "date": date,
         "amount": amount
       }
     });
