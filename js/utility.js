@@ -69,3 +69,7 @@ export function handleModals(isCreationSuccessful, confirmationMsg) {
   confirmationMsgElement.textContent = confirmationMsg;
   if (!isCreationSuccessful) confirmationMsgElement.style.color = "red";
 }
+
+export function clearInputField(element) {
+  element.value = "";
+}

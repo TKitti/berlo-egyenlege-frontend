@@ -1,5 +1,5 @@
 import { createCost  } from "./apiRequest.js";
-import { setMonths, showHideErrorMessage } from "./utility.js";
+import { setMonths, showHideErrorMessage, clearInputField } from "./utility.js";
 
 window.onload = () => {
   setMonths();
@@ -39,6 +39,7 @@ window.submitPassword = () => {
       } else if (modalTrigger == "payment") {
         // TODO: add createPayment
       }
+      clearInputField(costAmountInputField);
     } else {
       passwordErrorMsgElement.style.display = "block";
     }
@@ -82,6 +83,6 @@ togglePasswordIcon.addEventListener('click', () => {
 });
 
 passwordModal.addEventListener('hidden.bs.modal', function () {
-  passwordElement.value = "";
+  clearInputField(passwordElement);
   passwordErrorMsgElement.style.display = "none";
 });
