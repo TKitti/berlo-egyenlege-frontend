@@ -90,3 +90,41 @@ export async function createCost(password) {
     }); 
   }
 }
+
+
+export async function createPayment(password, selectedDate) {
+  const date = isValidDate(selectedDate) ? convertStringToTimestamp(selectedDate) : handleModals(false, "Érvénytelen dátum!");
+  const amount = document.getElementById("payment-amount").value;
+  
+  if (password && date && amount) {
+    let payload = JSON.stringify({
+      "password": password,
+      "payment": {
+        "date": date,
+        "amount": amount
+      }
+    });
+
+    const requestParams = {
+      method: "POST", 
+      headers: {
+        "Content-Type": "application/json",
+        //"Authorization": "Basic " + btoa("password:" + password)
+      }, 
+      body: payload
+    }
+
+    await fetch(`${baseUrl}/payment`, requestParams)
+    .then(async response => {
+      if (response?.ok) {
+        handleModals(true, "Sikeres rögzítés!");
+      }
+      if (response.status == 403) {
+        handleModals(false, "Hibás jelszó!");
+      }
+    })
+    .catch(() => {
+      handleModals(false, "Jaj.. valami gikszer volt. Nem sikerült rögzíteni!");
+    }); 
+  }
+}

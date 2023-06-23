@@ -44,23 +44,30 @@ body {
   background-color: #C8DBBE!important;
 }
 
-.add-cost-container {
+.add-cost-container, .add-payment-container {
   background-color: #9F8772;
-}
-
-.add-cost-container > form > label {
   color: white;
 }
 
-
-.add-cost-submit-button {
-  background-color: #EDE4E0;
-  box-shadow: 0 .5rem 1rem rgba(0,0,0,0.7);
-
+.add-cost-container > form > label,
+.add-payment-container > form > label {
+  color: white;
 }
 
-.add-cost-submit-button:hover {
+.form-header {
+  font-size: large;
+}
+
+
+.add-cost-submit-button, .add-payment-submit-button {
+  background-color: #EDE4E0;
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,0.7);
+}
+
+.add-cost-submit-button:hover,
+.add-payment-submit-button:hover {
   background-color: #C8DBBE;
+  color: black;
 }
 
 .send-password-button {
@@ -71,7 +78,10 @@ body {
   background-color: #EDE4E0;
 }
 
-#cost-amount-error-msg, #pw-error-msg {
+#cost-amount-error-msg,
+#payment-amount-error-msg,
+#date-error-msg,
+#pw-error-msg {
   color: darkorange;
   display: none;
   font-size: 0.8rem;

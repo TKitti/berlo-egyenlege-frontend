@@ -31,8 +31,9 @@ export function convertDate(date) {
 }
 
 export function isValidDate(dateString) {
-  var regEx = /^\d{4}-\d{2}$/;
-  return dateString.match(regEx) != null;
+  var regEx1 = /^\d{4}-\d{2}$/;
+  var regEx2 = /^\d{4}-\d{2}-\d{2}$/;
+  return dateString.match(regEx1) != null || dateString.match(regEx2) != null;
 }
 
 export function convertStringToTimestamp(dateString) {
