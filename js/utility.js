@@ -1,7 +1,7 @@
 export function updateBalance(balance) {
   let balanceElement = document.getElementById("balance");
 
-  if(balance && !isNaN(balance)) {
+  if((balance && !isNaN(balance)) || balance == 0) {
     balanceElement.textContent = formatAmount(Number(balance)) + " Ft";
     
     if (balance < 0) {
@@ -24,10 +24,10 @@ export function createTableRow(numberOfColumns, table, data) {
   table.appendChild(tableRow);
 }
 
-export function convertDate(date) {
+export function convertDate(date, format) {
   let newDate = new Date(date);
   let month = newDate.toLocaleDateString("hu", { month: "long" });
-  return newDate.getFullYear() + ". " + month;
+  return (format == "YYYY-MM") ? newDate.getFullYear() + ". " + month : newDate.getFullYear() + ". " + month + " " + newDate.getDay() + ".";
 }
 
 export function isValidDate(dateString) {

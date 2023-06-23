@@ -35,14 +35,14 @@ export async function getCosts() {
   .then(async response => {
     const jsonData = await response.json();
     
-    if (jsonData) {
+    if (jsonData && jsonData.length > 0) {
       jsonData.forEach(cost => {
-        const date = convertDate(cost.date);
+        const date = convertDate(cost.date, "YYYY-MM");
         const amount = formatAmount(cost.amount);
         createTableRow(2, table, [date, amount]);
       });
     } else {
-      createTableRow(1, table, ["Nincs mit kifizetni."]);
+      createTableRow(2, table, ["Nincs mit kifizetni."]);
     }
   })
   .catch(error => {
@@ -50,7 +50,27 @@ export async function getCosts() {
   });
 }
 
-
+export async function getPayments() {
+  let table = document.getElementById("payment-table");
+  
+  await fetch(`${baseUrl}/payments`, requestParamsGetMethod)
+  .then(async response => {
+    const jsonData = await response.json();
+    
+    if (jsonData && jsonData.length > 0) {
+      jsonData.forEach(payment => {
+        const date = convertDate(payment.date, "YYYY-MM-DD");
+        const amount = formatAmount(payment.amount);
+        createTableRow(2, table, [date, amount]);
+      });
+    } else {
+      createTableRow(2, table, ["Nincsenek befizetések."]);
+    }
+  })
+  .catch(error => {
+    console.log("can't get payments", error);
+  });
+}
 
 export async function createCost(password) {
   const year = document.getElementById("year-selection").value;
